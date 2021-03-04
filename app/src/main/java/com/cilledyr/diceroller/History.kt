@@ -20,13 +20,17 @@ private var his = arrayListOf<String>()
         setContentView(R.layout.activity_history)
         setSupportActionBar(findViewById(R.id.toolbar))
          his= intent.getStringArrayListExtra("list") as ArrayList<String>
+        val thelistView : ListView = findViewById(R.id.listView1)
         his?.toMutableList()
+        thelistView.setAdapter(HistoryArrayAdapter(this, ArrayList(his)!!))
+
+        /*his?.toMutableList()
         val arrayAdapter: ArrayAdapter<*>
         var mListView = findViewById<ListView>(R.id.listView1)
         arrayAdapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, his!!
         )
-        mListView.adapter = arrayAdapter
+        mListView.adapter = arrayAdapter*/
     }
 
 

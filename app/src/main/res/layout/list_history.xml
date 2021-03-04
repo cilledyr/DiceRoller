@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textListTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textSize="70px" />
+
+    <ImageView
+        android:id="@+id/imgListDice1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+    <ImageView
+        android:id="@+id/imgListDice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+    <ImageView
+        android:id="@+id/imgListDice3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+    <ImageView
+        android:id="@+id/imgListDice4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+    <ImageView
+        android:id="@+id/imgListDice5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+    <ImageView
+        android:id="@+id/imgListDice6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dice1"
+        android:maxWidth="40dp"
+        android:scaleType="fitCenter"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"/>
+
+
+
+</LinearLayout>

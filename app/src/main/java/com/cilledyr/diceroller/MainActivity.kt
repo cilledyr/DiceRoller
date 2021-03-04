@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
             /*val e1 = p.first; val e2 = p.second
                            s += "$e1 - $e2\n"}*/
-        s += "     $time"
+        s += "=$time"
         alist.add(s)
          s = ""
         mHistory.clear()
