@@ -1,30 +1,48 @@
 package com.cilledyr.diceroller
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
-
+    var alist = arrayListOf<String>()
+    public var s = ""
     private val mGenerator = Random()
-    private val diceIds = arrayOf(R.drawable.dice1, R.drawable.dice2, R.drawable.dice3,
-                            R.drawable.dice4, R.drawable.dice5, R.drawable.dice6)
+    private val diceIds = arrayOf(
+        R.drawable.dice1, R.drawable.dice2, R.drawable.dice3,
+        R.drawable.dice4, R.drawable.dice5, R.drawable.dice6
+    )
 
-    private val mHistory = mutableListOf<List<Int>>()
+    val mHistory = mutableListOf<List<Int>>()
     private val nrOfDice = arrayOf(1, 2, 3, 4, 5, 6)
     private var amountOfDice = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) {
+           alist = savedInstanceState.getSerializable("array") as ArrayList<String>
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        spinnerAmountOfDice.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nrOfDice)
+        spinnerAmountOfDice.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            nrOfDice
+        )
         spinnerAmountOfDice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 amountOfDice = nrOfDice[position]
             }
 
@@ -47,22 +65,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateHistory() {
-        var s = ""
-        mHistory.forEach{list ->    list.forEach{dice -> if(dice != -1){
+        val dateFormat = SimpleDateFormat("HH:mm:ss")
+        var time: String? = dateFormat.format(Date())
+        mHistory.forEach{ list ->    list.forEach{ dice -> if(dice != -1){
                                                             val nr = dice +1;
                                                             s += "$nr "};
                                 };
-                                s += "\n"}
 
+        }
             /*val e1 = p.first; val e2 = p.second
                            s += "$e1 - $e2\n"}*/
-        tvHistory.text = s
+        s += "     $time"
+        alist.add(s)
+         s = ""
+        mHistory.clear()
+
     }
 
-    fun clearHistory(v: View) {
-        mHistory.clear()
-        updateHistory()
-    }
+
 
     private fun rollDice() :List<Int> {
         var d1 = -1
@@ -125,4 +145,24 @@ class MainActivity : AppCompatActivity() {
         }
         return listOf(d1, d2, d3, d4, d5, d6)
     }
+
+    fun goToHistory(view: View) {
+        val intent = Intent(this, History::class.java)
+        intent.putStringArrayListExtra("list", alist)
+        this.startActivity(intent)
+        s=""
+    }
+
+    fun clear(view: View) {
+        alist.clear()
+        s = ""
+        mHistory.clear()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("array", alist)
+    }
+
+
 }
