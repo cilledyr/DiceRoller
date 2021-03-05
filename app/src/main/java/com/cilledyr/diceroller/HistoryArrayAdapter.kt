@@ -33,45 +33,46 @@ class HistoryArrayAdapter(context: Context, private val values: MutableList<Stri
         if(s != null) {
             val stringArrayText = s.split("=")[1].trim()
             textView.text = stringArrayText
-            val numbersArray: List<String> = s.split("-")[0].replace("=", "").split(" ")
+            val numbersArray: List<String> = s.split("=")[0].replace("=", "").trim().split(" ")
+            println(numbersArray.toString())
 
             val thefinalArray = mutableListOf<Int>()
             numbersArray.forEach { item ->
                 item.trim();
                 val theInt = findInteger(item);
-                if(theInt != null) {
-                    thefinalArray.add(theInt)
-                }}
+                thefinalArray.add(theInt)
+                }
+            println(thefinalArray.toString())
 
-            if (thefinalArray.size > 7) {
+            if (thefinalArray.size != 6) {
                 println("Something weird has occurred")
             } else {
                 if (thefinalArray[5] == -1) {
                     imageView6.isInvisible = true
                 } else {
-                    imageView6.setImageResource(diceIds[thefinalArray[5]-1])
+                    imageView6.setImageResource(diceIds[thefinalArray[5]])
                 }
                 if (thefinalArray[4] == -1) {
                     imageView5.isInvisible = true
                 } else {
-                    imageView5.setImageResource(diceIds[thefinalArray[4]-1])
+                    imageView5.setImageResource(diceIds[thefinalArray[4]])
                 }
                 if (thefinalArray[3] == -1) {
                     imageView4.isInvisible = true
                 } else {
-                    imageView4.setImageResource(diceIds[thefinalArray[3]-1])
+                    imageView4.setImageResource(diceIds[thefinalArray[3]])
                 }
                 if (thefinalArray[2] == -1) {
                     imageView3.isInvisible = true
                 } else {
-                    imageView3.setImageResource(diceIds[thefinalArray[2]-1])
+                    imageView3.setImageResource(diceIds[thefinalArray[2]])
                 }
                 if (thefinalArray[1] == -1) {
                     imageView2.isInvisible = true
                 } else {
-                    imageView2.setImageResource(diceIds[thefinalArray[1]-1])
+                    imageView2.setImageResource(diceIds[thefinalArray[1]])
                 }
-                imageView1.setImageResource(diceIds[thefinalArray[0]-1])
+                imageView1.setImageResource(diceIds[thefinalArray[0]])
             }
         }
         else {

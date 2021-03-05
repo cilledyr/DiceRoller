@@ -67,9 +67,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateHistory() {
         val dateFormat = SimpleDateFormat("HH:mm:ss")
         var time: String? = dateFormat.format(Date())
-        mHistory.forEach{ list ->    list.forEach{ dice -> if(dice != -1){
-                                                            val nr = dice +1;
-                                                            s += "$nr "};
+        mHistory.forEach{ list ->    list.forEach{ dice ->  s += "$dice ";
                                 };
 
         }
