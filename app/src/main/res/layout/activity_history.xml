@@ -41,6 +41,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 ></ListView>
+
+
+            <Button
+                android:onClick="goBack"
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Go Back"
+                ></Button>
+            <Button
+                android:layout_toRightOf="@id/clear"
+                android:onClick="clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Clear History"
+                ></Button>
         </RelativeLayout>
 
 

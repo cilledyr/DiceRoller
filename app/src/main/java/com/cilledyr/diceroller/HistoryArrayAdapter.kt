@@ -11,7 +11,7 @@ import androidx.core.view.isInvisible
 import java.lang.NumberFormatException
 
 
-class HistoryArrayAdapter(context: Context, private val values: MutableList<String?>) : ArrayAdapter<String?>(context, R.layout.list_history, values) {
+class HistoryArrayAdapter(context: Context, private val values: List<String?>) : ArrayAdapter<String?>(context, R.layout.list_history, values) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -34,7 +34,6 @@ class HistoryArrayAdapter(context: Context, private val values: MutableList<Stri
             val stringArrayText = s.split("=")[1].trim()
             textView.text = stringArrayText
             val numbersArray: List<String> = s.split("=")[0].replace("=", "").trim().split(" ")
-            println(numbersArray.toString())
 
             val thefinalArray = mutableListOf<Int>()
             numbersArray.forEach { item ->
@@ -42,7 +41,6 @@ class HistoryArrayAdapter(context: Context, private val values: MutableList<Stri
                 val theInt = findInteger(item);
                 thefinalArray.add(theInt)
                 }
-            println(thefinalArray.toString())
 
             if (thefinalArray.size != 6) {
                 println("Something weird has occurred")
@@ -79,7 +77,6 @@ class HistoryArrayAdapter(context: Context, private val values: MutableList<Stri
             println("Something unexpected happened.")
         }
 
-        println(s)
         /*if (s == "WindowsMobile") {
             imageView.setImageResource(R.drawable.windowsmobile_logo)
         } else if (s == "iOS") {

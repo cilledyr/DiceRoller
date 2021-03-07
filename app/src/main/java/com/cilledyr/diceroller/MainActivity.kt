@@ -13,7 +13,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    var alist = arrayListOf<String>()
+    var alist = mutableListOf<String>()
     public var s = ""
     private val mGenerator = Random()
     private val diceIds = arrayOf(
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
            alist = savedInstanceState.getSerializable("array") as ArrayList<String>
         }
+        alist = (RollDiceApp.sharedPrefsManager.getString(ISharedPrefsManager.Key.history)?.split("|")?: listOf<String>()).toMutableList()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         spinnerAmountOfDice.adapter = ArrayAdapter(
@@ -75,6 +76,7 @@ class MainActivity : AppCompatActivity() {
                            s += "$e1 - $e2\n"}*/
         s += "=$time"
         alist.add(s)
+        RollDiceApp.sharedPrefsManager.put(ISharedPrefsManager.Key.history,alist.joinToString ( "|" ))
          s = ""
         mHistory.clear()
 
@@ -146,20 +148,16 @@ class MainActivity : AppCompatActivity() {
 
     fun goToHistory(view: View) {
         val intent = Intent(this, History::class.java)
-        intent.putStringArrayListExtra("list", alist)
+      //  intent.putStringArrayListExtra("list", alist)
         this.startActivity(intent)
         s=""
+        alist.clear()
     }
 
-    fun clear(view: View) {
-        alist.clear()
-        s = ""
-        mHistory.clear()
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putSerializable("array", alist)
+       // outState.putSerializable("array", alist)
     }
 
 
