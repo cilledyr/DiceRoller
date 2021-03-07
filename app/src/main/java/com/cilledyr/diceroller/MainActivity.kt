@@ -26,9 +26,6 @@ class MainActivity : AppCompatActivity() {
     private var amountOfDice = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-           alist = savedInstanceState.getSerializable("array") as ArrayList<String>
-        }
         alist = (RollDiceApp.sharedPrefsManager.getString(ISharedPrefsManager.Key.history)?.split("|")?: listOf<String>()).toMutableList()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -153,12 +150,5 @@ class MainActivity : AppCompatActivity() {
         s=""
         alist.clear()
     }
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-       // outState.putSerializable("array", alist)
-    }
-
 
 }

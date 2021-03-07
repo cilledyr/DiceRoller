@@ -22,8 +22,6 @@ private var hislist = arrayListOf<String>()
         if (savedInstanceState != null) {
             hislist = savedInstanceState.getSerializable("arr") as ArrayList<String>
         }
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -31,32 +29,16 @@ private var hislist = arrayListOf<String>()
             thelistView.setAdapter(HistoryArrayAdapter(this,
                     RollDiceApp.sharedPrefsManager.getString(ISharedPrefsManager.Key.history)?.split("|")?: listOf()
             ))
-
-
-
-
-        /*his?.toMutableList()
-        val arrayAdapter: ArrayAdapter<*>
-        var mListView = findViewById<ListView>(R.id.listView1)
-        arrayAdapter = ArrayAdapter(this,
-            android.R.layout.simple_list_item_1, his!!
-        )
-        mListView.adapter = arrayAdapter*/
     }
-
-
-
     fun clear(view: View) {
         val thelistView = findViewById<ListView>(R.id.listView1)
         thelistView.adapter = null
         RollDiceApp.sharedPrefsManager.put(ISharedPrefsManager.Key.history,null)
     }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable("arr", hislist)
     }
-
     fun goBack(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         this.startActivity(intent)
